@@ -79,9 +79,11 @@ class DataHandler( xml.sax.ContentHandler ):
                      elif self.type[x] == 'M':
                         label[n - 1] = 'I-M'
                if j == 0:
-                  f.writelines([self.word[i][j], ' ', 'B-' + self.tag[i], ' ', parserlist[i],' ', label[n - 1], '\n'])
+                  #f.writelines([self.word[i][j], ' ', 'B-' + self.tag[i], ' ', parserlist[i],' ', label[n - 1], '\n'])
+                  f.writelines([self.word[i][j], ' ', 'B-' + self.tag[i], ' ', label[n - 1], '\n'])
                else:
-                  f.writelines([self.word[i][j], ' ', 'I-' + self.tag[i], ' ', parserlist[i], ' ',label[n - 1],'\n'])
+                  #f.writelines([self.word[i][j], ' ', 'I-' + self.tag[i], ' ', parserlist[i], ' ',label[n - 1],'\n'])
+                  f.writelines([self.word[i][j], ' ', 'B-' + self.tag[i], ' ', label[n - 1], '\n'])
          self.start=[]
          self.end=[]
          self.type=[]
@@ -119,7 +121,7 @@ class DataHandler( xml.sax.ContentHandler ):
 
 
 
-f = open('/Users/zhouyujie/Desktop/CRF-input-parser','w')
+f = open('/Users/zhouyujie/Desktop/CRF-output.txt','w')
 
 if (__name__ == "__main__"):
    # 创建一个 XMLReader
@@ -129,6 +131,6 @@ if (__name__ == "__main__"):
    # 重写 ContextHandler
    Handler = DataHandler()
    myparser.setContentHandler(Handler)
-   myparser.parse("/Users/zhouyujie/Desktop/train2018.release.xml")
+   myparser.parse("/Users/zhouyujie/Desktop/CGED16_HSK_TrainingSet.xml")
 
 
